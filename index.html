@@ -18,15 +18,9 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
       padding: 1.25rem 2rem;
       display: flex;
       align-items: center;
@@ -48,6 +42,20 @@
       color: #333;
       letter-spacing: 0.01em;
     }
+
+    #chat-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    chat-messenger {
+      width: 100%;
+      max-width: 480px;
+      height: 600px;
+    }
   </style>
 </head>
 <body>
@@ -56,6 +64,17 @@
     <div class="dot"></div>
     <span>ShopDemo Kundenservice</span>
   </header>
+
+  <div id="chat-wrapper">
+    <chat-messenger url-allowlist="*" render-mode="panel">
+      <chat-messenger-container
+        chat-title="ShopDemo Kundenservice"
+        chat-title-icon="https://gstatic.com/dialogflow-console/common/assets/ccai-favicons/conversational_agents.png"
+      >
+        <chat-reset-session-button slot="titlebar-actions" title-text="Start new chat"></chat-reset-session-button>
+      </chat-messenger-container>
+    </chat-messenger>
+  </div>
 
   <script>
     window.addEventListener("chat-messenger-loaded", () => {
@@ -69,29 +88,8 @@
           enableWelcomeEvent: true
         }),
       );
-
-      // Auto-open the chat widget
-      setTimeout(() => {
-        const cm = document.querySelector("chat-messenger");
-        if (cm) {
-          cm.removeAttribute("minimized");
-          cm.setAttribute("open", "true");
-        }
-      }, 800);
     });
   </script>
-
-  <chat-messenger url-allowlist="*" open>
-    <chat-messenger-container
-      chat-title="ShopDemo Kundenservice"
-      chat-title-icon="https://gstatic.com/dialogflow-console/common/assets/ccai-favicons/conversational_agents.png"
-      enable-file-upload
-    >
-      <chat-reset-session-button slot="titlebar-actions" title-text="Start new chat"></chat-reset-session-button>
-      <chat-toggle-dialog-button slot="titlebar-actions" title-text-expanded="Collapse" title-text-collapsed="Expand"></chat-toggle-dialog-button>
-      <chat-messenger-close-button slot="titlebar-actions" title-text="Close"></chat-messenger-close-button>
-    </chat-messenger-container>
-  </chat-messenger>
 
 </body>
 </html>
