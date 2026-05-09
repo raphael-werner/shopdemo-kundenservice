@@ -23,15 +23,19 @@
 </head>
 <body>
 
-  <script>
+<script>
     window.addEventListener("chat-messenger-loaded", () => {
       chatSdk.registerContext(
         chatSdk.prebuilts.ces.createContext({
-          deploymentName: "projects/446864674375/locations/us/apps/59f895ab-1d2c-483d-9247-e5543e7cf86c/deployments/74631868-6be8-4bc4-b071-cfb98cb80599"
+          deploymentName: "projects/446864674375/locations/us/apps/59f895ab-1d2c-483d-9247-e5543e7cf86c/deployments/74631868-6be8-4bc4-b071-cfb98cb80599",
+          tokenBroker: {
+            enableTokenBroker: true,
+            enableRecaptcha: false
+          }
         }),
       );
     });
-  </script>
+</script>
 
   <chat-messenger url-allowlist="*">
     <chat-messenger-container
