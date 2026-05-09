@@ -10,20 +10,54 @@
   <link rel="stylesheet" href="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/themes/chat-messenger-layout.css">
 
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      background: #f4f4f4;
-      font-family: sans-serif;
+      background: #f8f7f5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #e8e5e1;
+      background: #f8f7f5;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4a90a4;
+    }
+
+    header span {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #333;
+      letter-spacing: 0.01em;
     }
   </style>
 </head>
 <body>
 
-<script>
+  <header>
+    <div class="dot"></div>
+    <span>ShopDemo Kundenservice</span>
+  </header>
+
+  <script>
     window.addEventListener("chat-messenger-loaded", () => {
       chatSdk.registerContext(
         chatSdk.prebuilts.ces.createContext({
@@ -31,18 +65,27 @@
           tokenBroker: {
             enableTokenBroker: true,
             enableRecaptcha: false
-          }
+          },
+          enableWelcomeEvent: true
         }),
       );
-    });
-</script>
 
-  <chat-messenger url-allowlist="*">
+      // Auto-open the chat widget
+      setTimeout(() => {
+        const cm = document.querySelector("chat-messenger");
+        if (cm) {
+          cm.removeAttribute("minimized");
+          cm.setAttribute("open", "true");
+        }
+      }, 800);
+    });
+  </script>
+
+  <chat-messenger url-allowlist="*" open>
     <chat-messenger-container
       chat-title="ShopDemo Kundenservice"
       chat-title-icon="https://gstatic.com/dialogflow-console/common/assets/ccai-favicons/conversational_agents.png"
       enable-file-upload
-      expanded
     >
       <chat-reset-session-button slot="titlebar-actions" title-text="Start new chat"></chat-reset-session-button>
       <chat-toggle-dialog-button slot="titlebar-actions" title-text-expanded="Collapse" title-text-collapsed="Expand"></chat-toggle-dialog-button>
