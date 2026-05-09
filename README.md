@@ -16,17 +16,10 @@ Ein Kundenservice-Chatbot für einen fiktiven Online-Shop, gebaut mit Dialogflow
 - Automatische Eskalation bei Frustration
 - Ehrliche Antwort bei unbekannten Themen
 
-## Architektur
+## Aufbau
 
 Root Agent erkennt den Nutzer-Intent und leitet an spezialisierte Sub-Agents weiter:
 
-- `bestellstatus-agent` – Lieferzeiten, Bestellnummer
-- `rueckgabe-agent` – 3-stufiger Rückgabeprozess
-- `faq-agent` – Allgemeine Fragen, Öffnungszeiten, Kontakt
-
-## Tech Stack
-
-- Dialogflow CX / Conversational Agents (Google Cloud)
-- Multi-Agent Architektur
-- Gemini 2.5 Flash
-- GitHub Pages
+- `bestellstatus-agent`: Lieferzeiten, Bestellnummer
+- `rueckgabe-agent`: 3-stufiger Rückgabeprozess
+- `faq-agent`: Allgemeine Fragen, Öffnungszeiten, Kontakt; bezieht sich auf FAQ-Dokument
